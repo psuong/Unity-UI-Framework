@@ -7,7 +7,7 @@ namespace Utilities
     /// This class is creates a Singleton Object. A Singleton object
     /// only allows one instance of the said object to be active. This
     /// class is very useful to create managers; ideally you only want 1 
-    /// manager to run at any point in time. 
+    /// manager to run at any point in time.
     /// </summary>
     /// <typeparam name="T">T is the a generic component type</typeparam>
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
