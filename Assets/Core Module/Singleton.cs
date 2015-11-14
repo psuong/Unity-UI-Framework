@@ -12,6 +12,8 @@ namespace Utilities
     /// <typeparam name="T">T is the generic component type</typeparam>
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
+        public int s = 10;
+
         private static T _instance;
 
         private static object _lock = new object();
@@ -75,7 +77,7 @@ namespace Utilities
         /// <summary>
         /// Base function call, use this for an Awake call.
         /// </summary>
-        protected void OnAwake() { }
+        protected virtual void OnAwake() { }
     }
 
 }
