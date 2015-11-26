@@ -17,9 +17,18 @@ public class UI_Manager : Singleton<UI_Manager> {
 
     #region Open and Close Screens
     /// <summary>
-    /// Activates an instance of UI_Screen
-    /// and can close all other instances of
-    /// UI_Screen.
+    /// ODefault method for Unity to catch the method. Activates 
+    /// the instance the Screen and deactivates every other UI Screen
+    /// Component.
+    /// </summary>
+    /// <param name="name">name of the UI Screen</param>
+    public void OpenScreen(string name) {
+        OpenScreen(name, true);
+    }
+
+    /// <summary>
+    /// Activates an instance of UI_Screen and can close 
+    /// all other instances of UI_Screen.
     /// </summary>
     /// <param name="name">Name of the gameObject with a UI_Screen Component</param>
     /// <param name="canCloseAll">Should all other screens be closed?</param>
@@ -34,8 +43,7 @@ public class UI_Manager : Singleton<UI_Manager> {
     }
 
     /// <summary>
-    /// Deactivates all instances of 
-    /// UI_Screen.
+    /// Deactivates all instances of UI_Screen.
     /// </summary>
     public void CloseAllScreens() {
         for (int i = 0; i < screens.Length; i++) {
