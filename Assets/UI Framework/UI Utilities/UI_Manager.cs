@@ -15,6 +15,7 @@ public class UI_Manager : Singleton<UI_Manager> {
         }
     }
 
+    #region Open and Close Screens
     /// <summary>
     /// Activates an instance of UI_Screen
     /// and can close all other instances of
@@ -23,15 +24,38 @@ public class UI_Manager : Singleton<UI_Manager> {
     /// <param name="name">Name of the gameObject with a UI_Screen Component</param>
     /// <param name="canCloseAll">Should all other screens be closed?</param>
     public void OpenScreen(string name, bool canCloseAll=true) {
-
+        GetScreen(name).OpenThisScreen();
+        if (canCloseAll) {
+            for (int i = 0; i < screens.Length; i++) {
+                if (screens[i].name != name)
+                    screens[i].CloseThisScreen();
+            }
+        }
     }
 
+    /// <summary>
+    /// Deactivates all instances of 
+    /// UI_Screen.
+    /// </summary>
+    public void CloseAllScreens() {
+        for (int i = 0; i < screens.Length; i++) {
+            screens[i].CloseThisScreen();
+        }
+    }
+    #endregion
+
+    #region Getters
     /// <summary>
     /// Returns an instance of UI Screen
     /// </summary>
     /// <param name="name">Name of the screen to return</param>
     /// <returns>Null if no screen is found</returns>
     private UI_Screen GetScreen(string name) {
+        for (int i = 0; i < screens.Length; i++) {
+            if (screens[i].name == name)
+                return screens[i];
+        }
         return null;
     }
+    #endregion
 }

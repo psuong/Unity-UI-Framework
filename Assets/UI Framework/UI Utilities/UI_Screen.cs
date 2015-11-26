@@ -22,7 +22,7 @@ public class UI_Screen : MonoBehaviour {
 	    if (textDict == null || imageDict == null || sliderDict == null) {
             SetUp();
         }
-	}
+    }
 
     /// <summary>
     /// Populates the dictionaries with references
