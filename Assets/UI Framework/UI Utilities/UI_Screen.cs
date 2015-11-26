@@ -39,7 +39,9 @@ public class UI_Screen : MonoBehaviour {
         Slider[] sliderElements = GetComponentsInChildren<Slider>();
 
         for (int i = 0; i < textElements.Length; i++) {
-            textDict.Add(textElements[i].name, textElements[i]);
+            // Ignore text elements if the parent object has a component of type Button
+            if (textElements[i].transform.parent.GetComponent<Button>() == null)
+                textDict.Add(textElements[i].name, textElements[i]);
         }
 
         for (int i = 0; i < imageElements.Length; i++) {

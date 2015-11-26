@@ -12,8 +12,6 @@ namespace Utilities.Singleton
     /// <typeparam name="T">T is the generic component type</typeparam>
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        public int s = 10;
-
         private static T _instance;
 
         private static object _lock = new object();
