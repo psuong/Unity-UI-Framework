@@ -23,11 +23,6 @@ public class UI_Screen : MonoBehaviour {
             SetUp();
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     /// <summary>
     /// Populates the dictionaries with references
@@ -55,4 +50,22 @@ public class UI_Screen : MonoBehaviour {
             sliderDict.Add(sliderElements[i].name, sliderElements[i]);
         }
     }
+
+    #region Open and Close Screen
+    /// <summary>
+    /// Activates the instance of a gameObject 
+    /// that UI_Screen is attached to.
+    /// </summary>
+    public void OpenThisScreen() { gameObject.SetActive(true); }
+
+    /// <summary>
+    /// Deactivates the instance of a gameObject
+    /// that UI_Screen is attached to.
+    /// </summary>
+    public void CloseThisScreen() { gameObject.SetActive(false); }
+    #endregion
+
+    #region UI Getters
+
+    #endregion
 }

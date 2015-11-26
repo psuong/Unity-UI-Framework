@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Utilities
+namespace Utilities.Singleton
 {
     /// <summary>
     /// This class is creates a Singleton Object. A Singleton object
@@ -73,9 +73,9 @@ namespace Utilities
         }
         
         /// <summary>
-        /// Base function call, use this for an Awake call.
+        /// Base method call, use this for an Awake call.
         /// </summary>
-        protected void OnAwake() { }
+        protected virtual void OnAwake() { }
     }
 
 }
