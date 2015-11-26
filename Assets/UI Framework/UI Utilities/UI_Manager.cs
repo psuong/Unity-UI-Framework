@@ -4,8 +4,11 @@ using Utilities;
 
 public class UI_Manager : Singleton<UI_Manager> {
 
-	// Use this for initialization
-	void Start () {
+    // Stores all components of type screen
+    UI_Screen[] screens;
+
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
