@@ -67,12 +67,32 @@ public class UI_Screen : MonoBehaviour {
     public void CloseThisScreen() { gameObject.SetActive(false); }
     #endregion
 
+    /// <summary>
+    /// Can set the fill of the image in the screen. Value from 0-1
+    /// </summary>
+    /// <param name="imageName"></param>
+    /// <param name="fillValue"></param>
     public void SetImageFill(string imageName, float fillValue) {
         if (imageDict.ContainsKey(imageName)) {
             imageDict[imageName].fillAmount = fillValue;
         }
         else {
             Debug.LogError("Image not in dictionary");
+        }
+    }
+
+    /// <summary>
+    /// Can set the fill of the Slider. Value from 0-1
+    /// </summary>
+    /// <param name="sliderName"></param>
+    /// <param name="sliderValue"></param>
+    public void SetSliderFill(string sliderName, float sliderValue)
+    {
+        if (sliderDict.ContainsKey(sliderName)){
+            sliderDict[sliderName].value = sliderValue;
+        } 
+        else { 
+            Debug.LogError("Slider name not in dictionary");
         }
     }
 
