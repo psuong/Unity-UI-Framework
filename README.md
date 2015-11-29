@@ -4,5 +4,5 @@ Although UI can be easy, this UI framework allows developers to cleanly manage t
 while providing functionality to Unity's UI Components.
 
 Current Contributors:
-Porrith Suong
-Claudia Yan
+- Porrith Suong
+- Claudia Yan
