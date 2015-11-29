@@ -76,6 +76,18 @@ public class UI_Screen : MonoBehaviour {
         }
     }
 
+    public void SetImageColor(string imageName, float r, float g, float b, float a) //alter color of image using rgba (range from 0-1)
+    {
+        if (imageDict.ContainsKey(imageName)){
+            imageDict[imageName].color = new Color(r, g, b, a);
+        }
+        else
+        {
+            Debug.LogError("Image not in dictionary");
+        }
+
+    }
+
     #region UI Getters
 
     #endregion
