@@ -46,11 +46,13 @@ public class UI_Screen : MonoBehaviour {
 
         for (int i = 0; i < imageElements.Length; i++) {
             imageDict.Add(imageElements[i].name, imageElements[i]);
+            
         }
-
         for (int i = 0; i < sliderElements.Length; i++) {
             sliderDict.Add(sliderElements[i].name, sliderElements[i]);
+
         }
+        Debug.Log(imageDict);
     }
 
     #region Open and Close Screen
@@ -66,6 +68,14 @@ public class UI_Screen : MonoBehaviour {
     /// </summary>
     public void CloseThisScreen() { gameObject.SetActive(false); }
     #endregion
+
+    public void setImageFill(string imageName, float fillValue) {
+        if (imageDict.ContainsKey(imageName))
+        {
+            imageDict[imageName].fillAmount = fillValue;
+        }
+        else { Debug.LogError("Image not in dictionary"); }
+    }
 
     #region UI Getters
 
