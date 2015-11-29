@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// UI_Screen contains dictionaries which keeps
-/// references to all Text, Slider, 
+/// references to all Text, Slider, Image
 /// </summary>
 public class UI_Screen : MonoBehaviour {
 
@@ -34,9 +34,9 @@ public class UI_Screen : MonoBehaviour {
         imageDict = new Dictionary<string, Image>();
         sliderDict = new Dictionary<string, Slider>();
 
-        Text[] textElements = GetComponentsInChildren<Text>();
-        Image[] imageElements = GetComponentsInChildren<Image>();
-        Slider[] sliderElements = GetComponentsInChildren<Slider>();
+        Text[] textElements = GetComponentsInChildren<Text>(true);
+        Image[] imageElements = GetComponentsInChildren<Image>(true);
+        Slider[] sliderElements = GetComponentsInChildren<Slider>(true);
 
         for (int i = 0; i < textElements.Length; i++) {
             // Ignore text elements if the parent object has a component of type Button
@@ -46,13 +46,11 @@ public class UI_Screen : MonoBehaviour {
 
         for (int i = 0; i < imageElements.Length; i++) {
             imageDict.Add(imageElements[i].name, imageElements[i]);
-            
         }
+
         for (int i = 0; i < sliderElements.Length; i++) {
             sliderDict.Add(sliderElements[i].name, sliderElements[i]);
-
         }
-        Debug.Log(imageDict);
     }
 
     #region Open and Close Screen
@@ -69,12 +67,13 @@ public class UI_Screen : MonoBehaviour {
     public void CloseThisScreen() { gameObject.SetActive(false); }
     #endregion
 
-    public void setImageFill(string imageName, float fillValue) {
-        if (imageDict.ContainsKey(imageName))
-        {
+    public void SetImageFill(string imageName, float fillValue) {
+        if (imageDict.ContainsKey(imageName)) {
             imageDict[imageName].fillAmount = fillValue;
         }
-        else { Debug.LogError("Image not in dictionary"); }
+        else {
+            Debug.LogError("Image not in dictionary");
+        }
     }
 
     #region UI Getters
