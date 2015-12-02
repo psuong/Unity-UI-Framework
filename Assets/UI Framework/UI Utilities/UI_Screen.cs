@@ -78,14 +78,32 @@ public class UI_Screen : MonoBehaviour {
 
     public void SetImageColor(string imageName, float r, float g, float b, float a) //alter color of image using rgba (range from 0-1)
     {
-        if (imageDict.ContainsKey(imageName)){
+        if (imageDict.ContainsKey(imageName) && r <= 1 && r>= 0 && g <= 1 && g >= 0 && b <= 1 && b >= 0 && a <= 1 && a >= 0)
+        {
             imageDict[imageName].color = new Color(r, g, b, a);
         }
         else
         {
-            Debug.LogError("Image not in dictionary");
+            if(!imageDict.ContainsKey(imageName))
+                Debug.LogError("Image not in dictionary");
+            else if (r > 1 || r < 0)
+                Debug.LogError("r value is not within 0-1 range");
+            else if (g > 1 || g < 0)
+                Debug.LogError("g value is not within 0-1 range"); 
+            else if (b > 1 || b < 0)
+                Debug.LogError("b value is not within 0-1 range");
+            else if (a > 1 || a < 0)
+                Debug.LogError("a value is not within 0-1 range");
         }
 
+    }
+
+    public void SetImageColor(string imageName, Color setColor) //alter color image using basic Unity Colors ie.cyan
+    {
+        if (imageDict.ContainsKey(imageName))
+            imageDict[imageName].color = setColor;
+        else
+            Debug.LogError("Image not in dictionary");
     }
 
     #region UI Getters

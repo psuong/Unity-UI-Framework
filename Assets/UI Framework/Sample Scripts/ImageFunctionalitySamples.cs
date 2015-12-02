@@ -8,6 +8,7 @@ public class ImageFunctionalitySamples : UI_Screen {
     // TODO: Add more KeyCodes
     public KeyCode imageFillKeyCode = KeyCode.A;
     public KeyCode imageColorKeyCode = KeyCode.B;
+    public KeyCode imageColorDefaultKeyCode = KeyCode.D;
 
     public string barName = "Health Bar";
 
@@ -28,5 +29,7 @@ public class ImageFunctionalitySamples : UI_Screen {
         {
             SetImageColor(barName, Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         }
+        if (Input.GetKeyDown(imageColorDefaultKeyCode))
+            SetImageColor(barName, Color.cyan);
     }
 }
