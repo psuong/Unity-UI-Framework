@@ -139,6 +139,22 @@ public class UI_Screen : MonoBehaviour {
     }
     #endregion
 
+    #region Set Slider
+    /// <summary>
+    /// Can set the fill of the Slider. Value from 0-1
+    /// </summary>
+    /// <param name="sliderName">Name of the slider component</param>
+    /// <param name="sliderValue">Float value between 0 and 1</param>
+    public void SetSliderFill(string sliderName, float sliderValue) {
+        if (sliderDict.ContainsKey(sliderName)) {
+            sliderDict[sliderName].value = sliderValue;
+        }
+        else {
+            Debug.LogError("Slider name not in dictionary");
+        }
+    }
+    #endregion
+
     #region UI Getters
 
     #endregion
