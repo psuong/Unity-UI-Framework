@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -76,21 +76,69 @@ public class UI_Screen : MonoBehaviour {
         }
     }
 
+    #region Set Image Colors
     /// <summary>
-    /// Set text with fontsize. If no fontsize is added, it is defaulted to size 25
+    /// Takes in Unity's Color RGBA values as a float between 0 and 1
+    /// and sets the ImageComponent to that color.
     /// </summary>
-    /// <param name="textName"></param>
-    /// <param name="screenText"></param>
-    /// <param name="textSize"></param>
-    public void SetText(string textName, string screenText, float textSize = 25)
+    /// <param name="imageName">Name of the Image Component</param>
+    /// <param name="r">Float value between 0 and 1 for the red component</param>
+    /// <param name="g">Float value between 0 and 1 for the green component</param>
+    /// <param name="b">Float value between 0 and 1 for the blue component</param>
+    /// <param name="a">FLaot value between 0 and 1 for the alpha component</param>
+    public void SetImageColor(string imageName, float r, float g, float b, float a)
     {
-        if (textDict.ContainsKey(textName)){
+        if (imageDict.ContainsKey(imageName) && r <= 1 && r>= 0 && g <= 1 && g >= 0 && b <= 1 && b >= 0 && a <= 1 && a >= 0)
+        {
+            imageDict[imageName].color = new Color(r, g, b, a);
+        }
+        else
+        {
+            if(!imageDict.ContainsKey(imageName))
+                Debug.LogError("Image not in dictionary");
+            else if (r > 1 || r < 0)
+                Debug.LogError("r value is not within 0-1 range");
+            else if (g > 1 || g < 0)
+                Debug.LogError("g value is not within 0-1 range"); 
+            else if (b > 1 || b < 0)
+                Debug.LogError("b value is not within 0-1 range");
+            else if (a > 1 || a < 0)
+                Debug.LogError("a value is not within 0-1 range");
+        }
+    }
+
+    /// <summary>
+    /// Takes in a Unity's Color component and sets the Image Component
+    /// to that that color.
+    /// </summary>
+    /// <param name="imageName">Name of the Image Component</param>
+    /// <param name="setColor">Color value</param>
+    public void SetImageColor(string imageName, Color setColor)
+    {
+        if (imageDict.ContainsKey(imageName))
+            imageDict[imageName].color = setColor;
+        else
+            Debug.LogError("Image not in dictionary");
+    }
+    #endregion
+
+    #region Set Text
+    /// <summary>
+    /// Set text with fontsize. If no fontsize is added, it is defaulted to size 25.
+    /// </summary>
+    /// <param name="textName">Name of the Text Component</param>
+    /// <param name="screenText">The text to display</param>
+    /// <param name="textSize">Size of the font</param>
+    public void SetText(string textName, string screenText, float textSize = 25) {
+        if (textDict.ContainsKey(textName)) {
             textDict[textName].text = screenText;
         }
-        else{
+        else {
             Debug.LogError("Text not in dictionary");
         }
     }
+    #endregion
+
     #region UI Getters
 
     #endregion
