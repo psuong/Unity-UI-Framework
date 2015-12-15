@@ -72,7 +72,7 @@ public class UI_Screen : MonoBehaviour {
             imageDict[imageName].fillAmount = fillValue;
         }
         else {
-            Debug.LogError("Image not in dictionary");
+            Debug.LogError(imageName + " is not in dictionary");
         }
     }
 
@@ -86,16 +86,14 @@ public class UI_Screen : MonoBehaviour {
     /// <param name="g">Float value between 0 and 1 for the green component</param>
     /// <param name="b">Float value between 0 and 1 for the blue component</param>
     /// <param name="a">FLaot value between 0 and 1 for the alpha component</param>
-    public void SetImageColor(string imageName, float r, float g, float b, float a)
+    public void SetImageColor(string imageName, float r, float g, float b, float a = 1)
     {
         if (imageDict.ContainsKey(imageName) && r <= 1 && r>= 0 && g <= 1 && g >= 0 && b <= 1 && b >= 0 && a <= 1 && a >= 0)
-        {
             imageDict[imageName].color = new Color(r, g, b, a);
-        }
         else
         {
             if(!imageDict.ContainsKey(imageName))
-                Debug.LogError("Image not in dictionary");
+                Debug.LogError(imageName + " is not in dictionary");
             else if (r > 1 || r < 0)
                 Debug.LogError("r value is not within 0-1 range");
             else if (g > 1 || g < 0)
@@ -118,7 +116,7 @@ public class UI_Screen : MonoBehaviour {
         if (imageDict.ContainsKey(imageName))
             imageDict[imageName].color = setColor;
         else
-            Debug.LogError("Image not in dictionary");
+            Debug.LogError(imageName + " is not in dictionary!");
     }
     #endregion
 
@@ -134,28 +132,55 @@ public class UI_Screen : MonoBehaviour {
             textDict[textName].text = screenText;
         }
         else {
-            Debug.LogError("Text not in dictionary");
+            Debug.LogError(textName + " is not in dictionary!");
         }
     }
     #endregion
 
     #region Set Slider
     /// <summary>
-    /// Can set the fill of the Slider. Value from 0-1
+    /// Sets the slider's fill value to the desired amount.
     /// </summary>
     /// <param name="sliderName">Name of the slider component</param>
-    /// <param name="sliderValue">Float value between 0 and 1</param>
+    /// <param name="sliderValue">Float value between the min and the max values.</param>
     public void SetSliderFill(string sliderName, float sliderValue) {
         if (sliderDict.ContainsKey(sliderName)) {
             sliderDict[sliderName].value = sliderValue;
         }
         else {
-            Debug.LogError("Slider name not in dictionary");
+            Debug.LogError(sliderName + " is not in dictionary!");
         }
     }
+
+    /// <summary>
+    /// Overloads the SetSliderFill method to take in whole numbers (integers)
+    /// and set the value of the slider to that value.
+    /// </summary>
+    /// <param name="sliderName">Name of the slider component (string)</param>
+    /// <param name="sliderValue">Integer value of the slider's value between the min and max values.</param>
+    public void SetSliderFill(string sliderName, int sliderValue) {
+        if (sliderDict.ContainsKey(sliderName)) {
+            if (!sliderDict[sliderName].wholeNumbers) {
+                Debug.LogError(sliderName + " whole number's field is not enabled!");
+            }
+            else
+                sliderDict[sliderName].value = sliderValue;
+        }
+    }
+
     #endregion
 
     #region UI Getters
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="imageName"></param>
+    /// <returns></returns>
+    public Image GetImage(string imageName) {
+        if (!imageDict.ContainsKey(imageName)) {
+            Debug.LogError(imageName + " is not found in the dictionary!");
+        }
+        return imageDict[imageName];
+    }
     #endregion
 }
