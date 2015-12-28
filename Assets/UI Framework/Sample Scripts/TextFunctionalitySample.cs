@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class TextFunctionalitySample : UI_Screen {
+public class TextFunctionalitySample : UIScreen {
 
     public string textField;
     public string[] sampleText;
