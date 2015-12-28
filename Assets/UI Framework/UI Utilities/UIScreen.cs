@@ -171,15 +171,27 @@ public class UIScreen : MonoBehaviour {
 
     #region UI Getters
     /// <summary>
-    /// 
+    /// Returns an instance of an image. 
     /// </summary>
-    /// <param name="imageName"></param>
-    /// <returns></returns>
+    /// <param name="imageName">Name of the image gameObject</param>
+    /// <returns>Image</returns>
     public Image GetImage(string imageName) {
         if (!imageDict.ContainsKey(imageName)) {
             Debug.LogError(imageName + " is not found in the dictionary!");
         }
         return imageDict[imageName];
+    }
+    
+    /// <summary>
+    /// Returns an instance of a slider.
+    /// </summary>
+    /// <param name="sliderName">Name of the slider gameObject</param>
+    /// <returns>Slider</slider>
+    public Slider GetSlider(string sliderName) {
+        if (!imageDict.ContainsKey(sliderName)) {
+            Debug.LogError(sliderName + " is not found in the dictionary!");
+        }
+        return sliderDict[sliderName];
     }
     #endregion
 }
