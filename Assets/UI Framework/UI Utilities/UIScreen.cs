@@ -193,5 +193,17 @@ public class UIScreen : MonoBehaviour {
         }
         return sliderDict[sliderName];
     }
+
+    /// <summary>
+    /// Returns an instance of a Text gameObject.
+    /// </summary>
+    /// <param name="textName">Name of the text gameObject.</param>
+    /// <returns>Text</returns>
+    public Text GetText(string textName) {
+        if (!textDict.ContainsKey(textName)) {
+            Debug.LogError(textName + " is not found in the dictionary!");
+        }
+        return textDict[textName];        
+    }
     #endregion
 }
