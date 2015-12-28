@@ -166,7 +166,6 @@ public class UIScreen : MonoBehaviour {
                 sliderDict[sliderName].value = sliderValue;
         }
     }
-
     #endregion
 
     #region UI Getters

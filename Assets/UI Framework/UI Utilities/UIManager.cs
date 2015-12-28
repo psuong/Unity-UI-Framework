@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Utilities.Singleton;
+using UIFramework.Singleton;
 
 public class UIManager : Singleton<UIManager> {
 
@@ -54,7 +54,7 @@ public class UIManager : Singleton<UIManager> {
 
     #region Getters
     /// <summary>
-    /// Returns an instance of UI Screen
+    /// Returns an instance of UI Screen.
     /// </summary>
     /// <param name="name">Name of the screen to return</param>
     /// <returns>Null if no screen is found</returns>

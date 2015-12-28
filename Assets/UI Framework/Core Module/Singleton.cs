@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Utilities.Singleton
+namespace UIFramework.Singleton
 {
     /// <summary>
     /// This class is creates a Singleton Object. A Singleton object
@@ -52,7 +52,6 @@ namespace Utilities.Singleton
                                 _instance.gameObject.name);
                         }
                     }
-
                     return _instance;
                 }
             }
