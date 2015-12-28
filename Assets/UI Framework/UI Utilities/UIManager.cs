@@ -2,14 +2,14 @@
 using System.Collections;
 using Utilities.Singleton;
 
-public class UI_Manager : Singleton<UI_Manager> {
+public class UIManager : Singleton<UIManager> {
 
     // Stores all components of type screen
-    UI_Screen[] screens;
+    UIScreen[] screens;
 
     protected override void OnAwake() {
         // Gets all children components with UI_Screen, even inactive ones
-        screens = GetComponentsInChildren<UI_Screen>(true);
+        screens = GetComponentsInChildren<UIScreen>(true);
         for (int i = 0; i < screens.Length; i++) {
             screens[i].SetUp();
         }
@@ -58,7 +58,7 @@ public class UI_Manager : Singleton<UI_Manager> {
     /// </summary>
     /// <param name="name">Name of the screen to return</param>
     /// <returns>Null if no screen is found</returns>
-    private UI_Screen GetScreen(string name) {
+    private UIScreen GetScreen(string name) {
         for (int i = 0; i < screens.Length; i++) {
             if (screens[i].name == name)
                 return screens[i];

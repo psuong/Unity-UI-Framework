@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ImageFunctionalitySamples : UI_Screen {
+public class ImageFunctionalitySamples : UIScreen {
 
     // Because this will be an open sourced package make sure you 
     // add extra KeyCode(s) to allow users to play around with the functionality.

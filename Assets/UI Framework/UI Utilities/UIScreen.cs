@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
 /// UI_Screen contains dictionaries which keeps
 /// references to all Text, Slider, Image
 /// </summary>
-public class UI_Screen : MonoBehaviour {
+public class UIScreen : MonoBehaviour {
 
     protected Dictionary<string, Text> textDict;
     protected Dictionary<string, Image> imageDict;
@@ -85,7 +84,7 @@ public class UI_Screen : MonoBehaviour {
     /// <param name="r">Float value between 0 and 1 for the red component</param>
     /// <param name="g">Float value between 0 and 1 for the green component</param>
     /// <param name="b">Float value between 0 and 1 for the blue component</param>
-    /// <param name="a">FLaot value between 0 and 1 for the alpha component</param>
+    /// <param name="a">Float value between 0 and 1 for the alpha component</param>
     public void SetImageColor(string imageName, float r, float g, float b, float a = 1)
     {
         if (imageDict.ContainsKey(imageName) && r <= 1 && r>= 0 && g <= 1 && g >= 0 && b <= 1 && b >= 0 && a <= 1 && a >= 0)
