@@ -168,6 +168,28 @@ public class UIScreen : MonoBehaviour {
     }
     #endregion
 
+    #region Text Progression
+    public System.Collections.IEnumerator textProgression(string textName, string rollingText)
+    {
+        
+        if (textDict.ContainsKey(textName))
+        {
+            for (int i = 0; i >= 0; i += 1)
+            {
+                textDict[textName].text += rollingText[i];
+                Debug.Log(i);
+                yield return null;
+            }
+        }
+        else
+        {
+            Debug.LogError(textName + " is not in dictionary!");
+        }
+
+        
+    }
+    #endregion
+
     #region UI Getters
     /// <summary>
     /// Returns an instance of an image. 
