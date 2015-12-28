@@ -5,7 +5,6 @@ public class TextFunctionalitySample : UIScreen {
 
     public string textField;
     public string[] sampleText;
-    public int sampleTextSize;
 
     public KeyCode stringInput = KeyCode.V;
 
@@ -16,7 +15,7 @@ public class TextFunctionalitySample : UIScreen {
     // Update is called once per frame
     void Update () {
         if (Input.GetKeyUp(stringInput)) {
-            SetText(textField, sampleText[(int)Random.Range(0, 2)], sampleTextSize);
+            SetText(textField, sampleText[(int)Random.Range(0, 2)]);
         }
 	
 	}

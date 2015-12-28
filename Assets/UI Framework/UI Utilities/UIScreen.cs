@@ -126,10 +126,9 @@ public class UIScreen : MonoBehaviour {
     /// <param name="textName">Name of the Text Component</param>
     /// <param name="screenText">The text to display</param>
     /// <param name="textSize">Size of the font</param>
-    public void SetText(string textName, string screenText, int textSize = 25) {
+    public void SetText(string textName, string screenText) {
         if (textDict.ContainsKey(textName)) {
             textDict[textName].text = screenText;
-            textDict[textName].fontSize = textSize;
         }
         else {
             Debug.LogError(textName + " is not in dictionary!");
