@@ -174,7 +174,6 @@ public class UIScreen : MonoBehaviour {
             for (int i = 0; i < rollingText.Length; i += 1)
             {
                 textDict[textName].text += rollingText[i];
-                Debug.Log(i);
                 yield return null;
             }
     }

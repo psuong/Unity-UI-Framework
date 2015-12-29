@@ -22,7 +22,6 @@ public class TextFunctionalitySample : UIScreen {
         }
         if (Input.GetKeyUp(rollingInput))
         {
-            Debug.Log("K");
             //textProgression(textField, rollingText);
             StartCoroutine(textProgression(progressiveTextField, rollingText));
             
