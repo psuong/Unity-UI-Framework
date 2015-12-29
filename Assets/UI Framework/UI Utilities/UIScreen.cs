@@ -167,15 +167,34 @@ public class UIScreen : MonoBehaviour {
         }
     }
     #endregion
-
+    /// <summary>
+    /// Sets text to progress one letter at a time
+    /// </summary>
+    /// <param name="textName">Name of the Text Component</param>
+    /// <param name="rollingText">The text to be displayed progressively</param>
+    /// <param name="interruptKey">Set key to interrupt the coroutine and display the entire text</param>
     #region Text Progression
-    public System.Collections.IEnumerator textProgression(string textName, string rollingText)
+    public System.Collections.IEnumerator textProgression(string textName, string rollingText, KeyCode interruptKey)
     {
+        if (textDict.ContainsKey(textName))
+        {
             for (int i = 0; i < rollingText.Length; i += 1)
             {
                 textDict[textName].text += rollingText[i];
-                yield return null;
+                if (Input.GetKeyUp(interruptKey))
+                {
+                    textDict[textName].text = rollingText;
+                    yield break;
+                }
+                else
+                    yield return null;
             }
+        }
+        else
+        {
+            Debug.LogError(textName + " is not in dictionary!");
+        }
+        
     }
         
     

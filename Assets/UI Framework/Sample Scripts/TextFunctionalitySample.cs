@@ -10,6 +10,7 @@ public class TextFunctionalitySample : UIScreen {
 
     public KeyCode stringInput = KeyCode.V;
     public KeyCode rollingInput = KeyCode.K;
+    public KeyCode interruptInput = KeyCode.Space;
 
     protected override void Start() {
         base.Start();
@@ -22,9 +23,12 @@ public class TextFunctionalitySample : UIScreen {
         }
         if (Input.GetKeyUp(rollingInput))
         {
-            //textProgression(textField, rollingText);
-            StartCoroutine(textProgression(progressiveTextField, rollingText));
-            
+            StartCoroutine(textProgression(progressiveTextField, rollingText, interruptInput));
+            //if (Input.GetKeyUp(interruptInput))
+            //{
+            //    StopCoroutine(textProgression(progressiveTextField, rollingText));
+            //    SetText(progressiveTextField, rollingText);
+            //}         
         }
 	}
 }
