@@ -4,6 +4,7 @@ using System.Collections;
 public class TextFunctionalitySample : UIScreen {
 
     public string textField;
+    public string progressiveTextField;
     public string[] sampleText;
     public string rollingText;
 
@@ -21,8 +22,10 @@ public class TextFunctionalitySample : UIScreen {
         }
         if (Input.GetKeyUp(rollingInput))
         {
-            Debug.Log("Pressed k");
-            textProgression(textField, rollingText);
+            Debug.Log("K");
+            //textProgression(textField, rollingText);
+            StartCoroutine(textProgression(progressiveTextField, rollingText));
+            
         }
 	}
 }
