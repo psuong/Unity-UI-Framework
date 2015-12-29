@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 /// <summary>
-/// UI_Screen contains dictionaries which keeps
+/// UIScreen contains dictionaries which keeps
 /// references to all Text, Slider, Image
 /// </summary>
 public class UIScreen : MonoBehaviour {
@@ -121,11 +121,11 @@ public class UIScreen : MonoBehaviour {
 
     #region Set Text
     /// <summary>
-    /// Set text with fontsize. If no fontsize is added, it is defaulted to size 25.
+    /// Sets the text variable in the Text gameObject to a custom
+    /// string.
     /// </summary>
     /// <param name="textName">Name of the Text Component</param>
-    /// <param name="screenText">The text to display</param>
-    /// <param name="textSize">Size of the font</param>
+    /// <param name="screenText">The string to display</param>
     public void SetText(string textName, string screenText) {
         if (textDict.ContainsKey(textName)) {
             textDict[textName].text = screenText;
