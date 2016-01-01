@@ -25,8 +25,5 @@ public class TextFunctionalitySample : UIScreen {
         {
             StartCoroutine(TextProgression(progressiveTextField, rollingText, interruptInput));      
         }
-        if (Input.GetKey(KeyCode.I)) {
-            StopAllCoroutines();
-        }
 	}
 }
