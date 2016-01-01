@@ -110,8 +110,7 @@ public class UIScreen : MonoBehaviour {
     /// </summary>
     /// <param name="imageName">Name of the Image Component</param>
     /// <param name="setColor">Color value</param>
-    public void SetImageColor(string imageName, Color setColor)
-    {
+    public void SetImageColor(string imageName, Color setColor) {
         if (imageDict.ContainsKey(imageName))
             imageDict[imageName].color = setColor;
         else
@@ -174,24 +173,19 @@ public class UIScreen : MonoBehaviour {
     /// <param name="rollingText">The text to be displayed progressively</param>
     /// <param name="interruptKey">Set key to interrupt the coroutine and display the entire text</param>
     #region Text Progression
-    public System.Collections.IEnumerator textProgression(string textName, string rollingText, KeyCode interruptKey)
-    {
-        if (textDict.ContainsKey(textName))
-        {
-            for (int i = 0; i < rollingText.Length; i += 1)
-            {
+    public System.Collections.IEnumerator TextProgression(string textName, string rollingText, KeyCode interruptKey) {
+        if (textDict.ContainsKey(textName)) {
+            for (int i = 0; i < rollingText.Length; i += 1) {
                 textDict[textName].text += rollingText[i];
-                if (Input.GetKeyUp(interruptKey))
-                {
+                if (Input.GetKeyUp(interruptKey)) {
+                    StopCoroutine("TextProgression");
                     textDict[textName].text = rollingText;
-                    yield break;
                 }
                 else
                     yield return null;
             }
         }
-        else
-        {
+        else {
             Debug.LogError(textName + " is not in dictionary!");
         }
         

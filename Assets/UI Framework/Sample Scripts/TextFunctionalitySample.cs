@@ -23,7 +23,10 @@ public class TextFunctionalitySample : UIScreen {
         }
         if (Input.GetKeyUp(rollingInput))
         {
-            StartCoroutine(textProgression(progressiveTextField, rollingText, interruptInput));      
+            StartCoroutine(TextProgression(progressiveTextField, rollingText, interruptInput));      
+        }
+        if (Input.GetKey(KeyCode.I)) {
+            StopAllCoroutines();
         }
 	}
 }
