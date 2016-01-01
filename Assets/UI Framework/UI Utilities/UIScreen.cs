@@ -32,14 +32,23 @@ public class UIScreen : MonoBehaviour {
         textDict = new Dictionary<string, Text>();
         imageDict = new Dictionary<string, Image>();
         sliderDict = new Dictionary<string, Slider>();
+        int counter = 0;
 
         Text[] textElements = GetComponentsInChildren<Text>(true);
         Image[] imageElements = GetComponentsInChildren<Image>(true);
         Slider[] sliderElements = GetComponentsInChildren<Slider>(true);
+        
+        
 
         for (int i = 0; i < textElements.Length; i++) {
-            // Ignore text elements if the parent object has a component of type Button
-            if (textElements[i].transform.parent.GetComponent<Button>() == null)
+            // If the dictionary contains the key already then give the key and Text name
+            // a unique ID.
+            if (textDict.ContainsKey(textElements[i].name)) {
+                textElements[i].name = textElements[i].name + " " + counter;
+                counter++;
+                textDict.Add(textElements[i].name, textElements[i]);
+            }
+            else
                 textDict.Add(textElements[i].name, textElements[i]);
         }
 
