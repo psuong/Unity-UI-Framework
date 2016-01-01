@@ -1,11 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
-using UIFramework.Singleton;
+﻿using UIFramework.Singleton;
 
+/// <summary>
+/// UIManager handles all instances of UIScreens and provides basic functionality
+/// such as opening and closing Screens.
+/// </summary>
 public class UIManager : Singleton<UIManager> {
 
     // Stores all components of type screen
-    UIScreen[] screens;
+    private UIScreen[] screens;
 
     protected override void OnAwake() {
         // Gets all children components with UI_Screen, even inactive ones
@@ -54,7 +56,7 @@ public class UIManager : Singleton<UIManager> {
 
     #region Getters
     /// <summary>
-    /// Returns an instance of UI Screen.
+    /// Returns an instance of UIScreen.
     /// </summary>
     /// <param name="name">Name of the screen to return</param>
     /// <returns>Null if no screen is found</returns>

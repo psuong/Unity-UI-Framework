@@ -3,8 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 /// <summary>
-/// UIScreen contains dictionaries which keeps
-/// references to all Text, Slider, Image
+/// UIScreen contains dictionaries which keeps references to all Text, Slider, Image.
 /// </summary>
 public class UIScreen : MonoBehaviour {
 
@@ -13,9 +12,8 @@ public class UIScreen : MonoBehaviour {
     protected Dictionary<string, Slider> sliderDict;
 
     /// <summary>
-    /// Unity's Start() method; this checks to see if
-    /// the dictionaries are built up, if not then it builds up the
-    /// dictionaries.
+    /// Unity's Start() method; this checks to see if the dictionaries 
+    /// are built up, if not then it builds up the dictionaries.
     /// </summary>
 	protected virtual void Start () {
 	    if (textDict == null || imageDict == null || sliderDict == null) {
@@ -24,42 +22,21 @@ public class UIScreen : MonoBehaviour {
     }
 
     /// <summary>
-    /// Populates the dictionaries with references
-    /// to all Text, Image, and Slider components within
-    /// the scene.
+    /// Populates the dictionaries with references to all Text,
+    /// Image, and Slider components within the scene.
     /// </summary>
     public void SetUp() {
         textDict = new Dictionary<string, Text>();
         imageDict = new Dictionary<string, Image>();
         sliderDict = new Dictionary<string, Slider>();
-        int counter = 0;
 
         Text[] textElements = GetComponentsInChildren<Text>(true);
         Image[] imageElements = GetComponentsInChildren<Image>(true);
         Slider[] sliderElements = GetComponentsInChildren<Slider>(true);
         
-        
-
-        for (int i = 0; i < textElements.Length; i++) {
-            // If the dictionary contains the key already then give the key and Text name
-            // a unique ID.
-            if (textDict.ContainsKey(textElements[i].name)) {
-                textElements[i].name = textElements[i].name + " " + counter;
-                counter++;
-            }
-            textDict.Add(textElements[i].name, textElements[i]);
-        }
-
-        for (int i = 0; i < imageElements.Length; i++) {
-            if (imageDict.ContainsKey(textElements[i].name)) {
-                imageElements[i].name = imageElements[i].name + " " + counter;
-            }
-            imageDict.Add(imageElements[i].name, imageElements[i]);
-        }
-
-        for (int i = 0; i < sliderElements.Length; i++) {
-            sliderDict.Add(sliderElements[i].name, sliderElements[i]);
-        }
+        SetUpTextDict(textElements);
+        SetUpImageDict(imageElements);
+        SetUpSliderDict(sliderElements);
     }
 
     #region Open and Close Screen
@@ -142,6 +119,29 @@ public class UIScreen : MonoBehaviour {
             Debug.LogError(textName + " is not in dictionary!");
         }
     }
+    
+    /// <summary>
+    /// Sets text to progress one letter at a time
+    /// </summary>
+    /// <param name="textName">Name of the Text Component</param>
+    /// <param name="rollingText">The text to be displayed progressively</param>
+    /// <param name="interruptKey">Set key to interrupt the coroutine and display the entire text</param>
+    public System.Collections.IEnumerator TextProgression(string textName, string rollingText, KeyCode interruptKey) {
+        if (textDict.ContainsKey(textName)) {
+            for (int i = 0; i < rollingText.Length; i += 1) {
+                textDict[textName].text += rollingText[i];
+                if (Input.GetKeyUp(interruptKey)) {
+                    StopCoroutine("TextProgression");
+                    textDict[textName].text = rollingText;
+                }
+                else
+                    yield return null;
+            }
+        }
+        else {
+            Debug.LogError(textName + " is not in dictionary!");
+        }
+    }
     #endregion
 
     #region Set Slider
@@ -175,34 +175,7 @@ public class UIScreen : MonoBehaviour {
         }
     }
     #endregion
-    /// <summary>
-    /// Sets text to progress one letter at a time
-    /// </summary>
-    /// <param name="textName">Name of the Text Component</param>
-    /// <param name="rollingText">The text to be displayed progressively</param>
-    /// <param name="interruptKey">Set key to interrupt the coroutine and display the entire text</param>
-    #region Text Progression
-    public System.Collections.IEnumerator TextProgression(string textName, string rollingText, KeyCode interruptKey) {
-        if (textDict.ContainsKey(textName)) {
-            for (int i = 0; i < rollingText.Length; i += 1) {
-                textDict[textName].text += rollingText[i];
-                if (Input.GetKeyUp(interruptKey)) {
-                    StopCoroutine("TextProgression");
-                    textDict[textName].text = rollingText;
-                }
-                else
-                    yield return null;
-            }
-        }
-        else {
-            Debug.LogError(textName + " is not in dictionary!");
-        }
-        
-    }
-        
     
-    #endregion
-
     #region UI Getters
     /// <summary>
     /// Returns an instance of an image. 
@@ -241,7 +214,7 @@ public class UIScreen : MonoBehaviour {
     }
     #endregion
     
-    #region Private Methods
+    #region Private Set Up Methods
     /// <summary>
     /// Builds the textDict with keys as a unique Text Component's name and
     /// the value as the associated Text's object.  
