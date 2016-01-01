@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// UIScreen contains dictionaries which keeps references to all Text, Slider, Image.
 /// </summary>
 public class UIScreen : MonoBehaviour {
-
+    // Stores all references of Unity's Text, Image, and Slider Components
     protected Dictionary<string, Text> textDict;
     protected Dictionary<string, Image> imageDict;
     protected Dictionary<string, Slider> sliderDict;
