@@ -46,13 +46,14 @@ public class UIScreen : MonoBehaviour {
             if (textDict.ContainsKey(textElements[i].name)) {
                 textElements[i].name = textElements[i].name + " " + counter;
                 counter++;
-                textDict.Add(textElements[i].name, textElements[i]);
             }
-            else
-                textDict.Add(textElements[i].name, textElements[i]);
+            textDict.Add(textElements[i].name, textElements[i]);
         }
 
         for (int i = 0; i < imageElements.Length; i++) {
+            if (imageDict.ContainsKey(textElements[i].name)) {
+                imageElements[i].name = imageElements[i].name + " " + counter;
+            }
             imageDict.Add(imageElements[i].name, imageElements[i]);
         }
 
@@ -94,8 +95,7 @@ public class UIScreen : MonoBehaviour {
     /// <param name="g">Float value between 0 and 1 for the green component</param>
     /// <param name="b">Float value between 0 and 1 for the blue component</param>
     /// <param name="a">Float value between 0 and 1 for the alpha component</param>
-    public void SetImageColor(string imageName, float r, float g, float b, float a = 1)
-    {
+    public void SetImageColor(string imageName, float r, float g, float b, float a = 1) {
         if (imageDict.ContainsKey(imageName) && r <= 1 && r>= 0 && g <= 1 && g >= 0 && b <= 1 && b >= 0 && a <= 1 && a >= 0)
             imageDict[imageName].color = new Color(r, g, b, a);
         else
@@ -238,6 +238,58 @@ public class UIScreen : MonoBehaviour {
             Debug.LogError(textName + " is not found in the dictionary!");
         }
         return textDict[textName];        
+    }
+    #endregion
+    
+    #region Private Methods
+    /// <summary>
+    /// Builds the textDict with keys as a unique Text Component's name and
+    /// the value as the associated Text's object.  
+    /// </summary>
+    /// </param name="textList">An array of Text Components</param>
+    private void SetUpTextDict(Text[] textList) {
+        int counter = 0;
+        for (int i = 0; i < textList.Length; i++) {
+            // If the dictionary contains the key already then give the key and Text name
+            // a unique ID.
+            if (textDict.ContainsKey(textList[i].name)) {
+                textList[i].name = textList[i].name + " " + counter;
+                counter++;
+            }
+            textDict.Add(textList[i].name, textList[i]);
+        }
+    }
+    
+    /// <summary>
+    /// Builds the imageDict with keys as a unique Image Component's name and
+    /// value as the associated Image's object.
+    /// </summary>
+    /// <param name="imageList">An array of Image Components</param>
+    private void SetUpImageDict(Image[] imageList) {
+        int counter = 0;
+        for (int i = 0; i < imageList.Length; i++) {
+            if (imageDict.ContainsKey(imageList[i].name)) {
+                imageList[i].name = imageList[i].name + " " + counter;
+                counter++;
+            }
+            imageDict.Add(imageList[i].name, imageList[i]);
+        }
+    }
+    
+    /// <summary>
+    /// Builds the sliderDict with keys as a unique Slider Component's name and
+    /// value as the associated Slider's object.
+    /// </summary>
+    /// <param name="imageList">An array of Slider Components</param>
+    private void SetUpSliderDict(Slider[] sliderList) {
+        int counter = 0;
+        for (int i = 0; i < sliderList.Length; i++) {
+            if (sliderDict.ContainsKey(sliderList[i].name)) {
+                sliderList[i].name = sliderList[i].name + " " + counter;
+                counter++;
+            }
+            sliderDict.Add(sliderList[i].name, sliderList[i]);
+        }
     }
     #endregion
 }
