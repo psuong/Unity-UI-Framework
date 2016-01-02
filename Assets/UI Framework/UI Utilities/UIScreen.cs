@@ -128,7 +128,7 @@ public class UIScreen : MonoBehaviour {
     /// <param name="interruptKey">Set key to interrupt the coroutine and display the entire text</param>
     public System.Collections.IEnumerator TextProgression(string textName, string rollingText, KeyCode interruptKey) {
         if (textDict.ContainsKey(textName)) {
-            for (int i = 0; i < rollingText.Length; i += 1) {
+            for (int i = 0; i < rollingText.Length; i++) {
                 textDict[textName].text += rollingText[i];
                 if (Input.GetKeyUp(interruptKey)) {
                     StopCoroutine("TextProgression");

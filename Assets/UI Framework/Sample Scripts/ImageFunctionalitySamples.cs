@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class ImageFunctionalitySamples : UIScreen {
 
@@ -14,9 +13,7 @@ public class ImageFunctionalitySamples : UIScreen {
         if (Input.GetKeyDown(imageFillKeyCode))
             SetImageFill(barName, Random.Range(0f, 1f));
         if (Input.GetKeyDown(imageColorKeyCode))
-        {
             SetImageColor(barName, Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        }
         if (Input.GetKeyDown(imageColorDefaultKeyCode))
             SetImageColor(barName, Color.cyan);
     }

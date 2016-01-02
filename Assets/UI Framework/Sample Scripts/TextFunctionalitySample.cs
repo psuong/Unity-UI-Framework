@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class TextFunctionalitySample : UIScreen {
 
@@ -13,12 +12,9 @@ public class TextFunctionalitySample : UIScreen {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyUp(stringInput)) {
+        if (Input.GetKeyUp(stringInput)) 
             SetText(titleName, sampleText[(int)Random.Range(0, 2)]);
-        }
-        if (Input.GetKeyUp(rollingInput))
-        {
+        if (Input.GetKeyUp(rollingInput)) 
             StartCoroutine(TextProgression(progressiveTextField, rollingText, interruptInput));      
-        }
 	}
 }

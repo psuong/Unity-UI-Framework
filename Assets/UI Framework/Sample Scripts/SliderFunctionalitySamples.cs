@@ -17,9 +17,8 @@ public class SliderFunctionalitySamples : UIScreen {
     
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyUp(sliderFillInput)) {
+        if (Input.GetKeyUp(sliderFillInput))
             SetSliderFill(sliderName, Random.Range(GetSlider(sliderName).minValue, GetSlider(sliderName).maxValue));
-        }
         SetText(textValueName, slider.value.ToString());
     }
 }
