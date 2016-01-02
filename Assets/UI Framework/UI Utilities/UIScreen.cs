@@ -193,9 +193,9 @@ public class UIScreen : MonoBehaviour {
     /// Returns an instance of a slider.
     /// </summary>
     /// <param name="sliderName">Name of the slider gameObject</param>
-    /// <returns>Slider</slider>
+    /// <returns>Slider</returns>
     public Slider GetSlider(string sliderName) {
-        if (!imageDict.ContainsKey(sliderName)) {
+        if (!sliderDict.ContainsKey(sliderName)) {
             Debug.LogError(sliderName + " is not found in the dictionary!");
         }
         return sliderDict[sliderName];
@@ -219,7 +219,7 @@ public class UIScreen : MonoBehaviour {
     /// Builds the textDict with keys as a unique Text Component's name and
     /// the value as the associated Text's object.  
     /// </summary>
-    /// </param name="textList">An array of Text Components</param>
+    /// <param name="textList">An array of Text Components</param>
     private void SetUpTextDict(Text[] textList) {
         int counter = 0;
         for (int i = 0; i < textList.Length; i++) {
@@ -253,7 +253,7 @@ public class UIScreen : MonoBehaviour {
     /// Builds the sliderDict with keys as a unique Slider Component's name and
     /// value as the associated Slider's object.
     /// </summary>
-    /// <param name="imageList">An array of Slider Components</param>
+    /// <param name="sliderList">An array of Slider Components</param>
     private void SetUpSliderDict(Slider[] sliderList) {
         int counter = 0;
         for (int i = 0; i < sliderList.Length; i++) {

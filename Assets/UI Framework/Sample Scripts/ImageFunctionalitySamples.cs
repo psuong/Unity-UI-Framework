@@ -5,7 +5,7 @@ public class ImageFunctionalitySamples : UIScreen {
 
     // Because this will be an open sourced package make sure you 
     // add extra KeyCode(s) to allow users to play around with the functionality.
-    // TODO: Add more KeyCodes
+
     public KeyCode imageFillKeyCode = KeyCode.A;
     public KeyCode imageColorKeyCode = KeyCode.B;
     public KeyCode imageColorDefaultKeyCode = KeyCode.D;
