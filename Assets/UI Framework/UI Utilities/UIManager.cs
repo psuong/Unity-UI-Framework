@@ -19,8 +19,8 @@ public class UIManager : Singleton<UIManager> {
 
     #region Open and Close Screens
     /// <summary>
-    /// Default method for Unity to catch the method. Activates the 
-    /// instance the Screen and deactivates every other UI Screen Component.
+    /// Default method for Unity's UI to catch. Activates the 
+    /// instance of the Screen and deactivates every other UI Screen Component.
     /// </summary>
     /// <param name="name">name of the UI Screen</param>
     public void OpenScreen(string name) {
