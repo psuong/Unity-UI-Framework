@@ -10,13 +10,14 @@ public class UIScreen : MonoBehaviour {
     protected Dictionary<string, Text> textDict;
     protected Dictionary<string, Image> imageDict;
     protected Dictionary<string, Slider> sliderDict;
+    protected Dictionary<string, Button> buttonDict;
 
     /// <summary>
     /// Unity's Start() method; this checks to see if the dictionaries 
     /// are built up, if not then it builds up the dictionaries.
     /// </summary>
 	protected virtual void Start () {
-	    if (textDict == null || imageDict == null || sliderDict == null) {
+	    if (textDict == null || imageDict == null || sliderDict == null || buttonDict ==null) {
             SetUp();
         }
     }
@@ -29,14 +30,17 @@ public class UIScreen : MonoBehaviour {
         textDict = new Dictionary<string, Text>();
         imageDict = new Dictionary<string, Image>();
         sliderDict = new Dictionary<string, Slider>();
+        buttonDict = new Dictionary<string, Button>();
 
         Text[] textElements = GetComponentsInChildren<Text>(true);
         Image[] imageElements = GetComponentsInChildren<Image>(true);
         Slider[] sliderElements = GetComponentsInChildren<Slider>(true);
-        
+        Button[] buttonElements = GetComponentsInChildren<Button>(true);
+
         SetUpTextDict(textElements);
         SetUpImageDict(imageElements);
         SetUpSliderDict(sliderElements);
+        SetUpButtonDict(buttonElements);
     }
 
     #region Open and Close Screen
@@ -144,6 +148,13 @@ public class UIScreen : MonoBehaviour {
     }
     #endregion
 
+    #region Set Buttons
+    public void SetButton(string buttonName, string buttonText)
+    {
+
+    }
+    #endregion
+
     #region Set Slider
     /// <summary>
     /// Sets the slider's fill value to the desired amount.
@@ -212,6 +223,16 @@ public class UIScreen : MonoBehaviour {
         }
         return textDict[textName];        
     }
+
+    public Button GetButton(string buttonName)
+    {
+        if (!buttonDict.ContainsKey(buttonName))
+        {
+            Debug.LogError(buttonName + " is not found in the dictionary boo");
+        }
+        return buttonDict[buttonName];
+
+    }
     #endregion
     
     #region Private Set Up Methods
@@ -262,6 +283,20 @@ public class UIScreen : MonoBehaviour {
                 counter++;
             }
             sliderDict.Add(sliderList[i].name, sliderList[i]);
+        }
+    }
+
+    private void SetUpButtonDict(Button[] buttonList)
+    {
+        int counter = 0;
+        for (int i = 0; i < buttonList.Length; i++)
+        {
+            if (buttonDict.ContainsKey(buttonList[i].name))
+            {
+                buttonList[i].name = buttonList[i].name + " " + counter;
+                counter++;
+            }
+            buttonDict.Add(buttonList[i].name, buttonList[i]);
         }
     }
     #endregion
