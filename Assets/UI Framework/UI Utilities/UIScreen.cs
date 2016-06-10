@@ -149,9 +149,19 @@ public class UIScreen : MonoBehaviour {
     #endregion
 
     #region Set Buttons
+    /// <summary>
+    /// Sets the text compenent in the Button gameObject to a custom string
+    /// </summary>
+    /// <param name="buttonName">Name of the Button Component</param>
+    /// <param name="buttonText">The string to display on the button</param>
     public void SetButton(string buttonName, string buttonText)
     {
-
+        if (buttonDict.ContainsKey(buttonName))
+        {
+            buttonDict[buttonName].GetComponentInChildren<Text>().text = buttonText;
+        }
+        else
+            Debug.LogErrorFormat("{0} is not in the dictionary", buttonName);
     }
     #endregion
 
